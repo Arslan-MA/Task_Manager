@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body style="text-align: center;
+font-size: 20px;
+margin: 0">
+    <div style="background-color: black;">
+        <a href="{% url 'home' %}"><button type="submit" name="done" style="padding: 5px;
+            width: 300px;
+            font-size: 30px;
+            ">Главное</button></a>
+    </div>
+    <h1>Create Task</h1>
+    <div style="border: 3px solid;
+    font-size: 30px;
+    padding: 20px;">
+        <form method="post">
+            {% csrf_token %}
+            <label>Name:</label><br>
+            <input type="text" name="name" style="width: 300px;
+            font-size: 25px;
+            padding: 8px;"><br><br>
+            <label>Description:</label><br>
+            <textarea name="description" style="width: 400px;
+            height: 100px;
+            font-size: 25px;
+            padding: 8px;"></textarea><br><br>
+            <label>Date of creation:</label><br>
+            <input type="date" name="date_of_creation" style="width: 300px;
+            font-size: 25px;
+            padding: 8px;"><br><br>
+            <label>Deadline date:</label><br>
+            <input type="date" name="deadline_date" style="width: 300px;
+            font-size: 25px;
+            padding: 8px;"><br><br>
+            <label>Priority level:</label><br>
+            <select name="priority_level" style="width: 300px;
+            font-size: 25px;
+            padding: 8px;">
+                <option value="Высокий">Высокий</option>
+                <option value="Средний">Средний</option>
+                <option value="Малый">Малый</option>
+            </select><br><br>
+            <label>Status:</label><br>
+            <select name="status" style="width: 300px;
+            font-size: 25px;
+            padding: 8px;">
+                <option value="Не выполнено">Не выполнено</option>
+                <option value="Выполнено">Выполнено</option>
+            </select><br><br>
+            <a href=""><button type="submit" name="done" style="padding: 5px;
+                width: 150px;
+                font-size: 25px;">Создать</button></a>
+        </form>
+    </div>
+
+</body>
+
+</html>

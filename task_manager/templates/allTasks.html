@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body style="text-align: center;
+font-size: 20px;
+margin: 0">
+    <div style="background-color: black;">
+        <a href="{% url 'create' %}"><button type="submit" name="done" style="padding: 5px;
+            width: 300px;
+            font-size: 30px;
+            ">Создать задание</button></a>
+    </div>
+    <h1>Backlog of tasks</h1>
+    <div style="margin: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 10px;">
+        {% for task in tasks %}
+            {% if task.status == 'Не выполнено' %}
+                <div style="border: 3px solid;
+                margin: auto;
+                width: 600px;
+                height: 385px;
+                padding: 12px;
+                margin-top: 20px;">
+                    <h2>{{ task.name }}</h2>
+                    <p>{{ task.description }}</p>
+                    <p>{{ task.date_of_creation }}</p>
+                    <p>{{ task.deadline_date }}</p>
+                    <p>{{ task.priority_level }}</p>
+                    <p>{{ task.status }}</p>
+                    <form method="get">
+                        {% csrf_token %}
+                        <a href="{% url 'done' task.id %}"><button type="button" style="padding: 5px;
+                        width: 120px;">Выполнено</button></a>
+                        <a href="{{ task.get_absolute_url }}"><button type="button" style="padding: 5px;
+                        width: 120px;">Редактировать</button></a>
+                        <a href=""><button type="button" style="padding: 5px;
+                        width: 120px;">Удалить</button></a>
+                    </form>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <br><br>
+    <h1>Completed tasks</h1>
+    <div style="margin: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 10px;">
+        {% for task in tasks %}
+            {% if task.status == 'Выполнено' %}
+                <div style="border: 3px solid;
+                margin: auto;
+                width: 600px;
+                height: 385px;
+                padding: 12px;
+                margin-top: 20px;">
+                    <h2>{{ task.name }}</h2>
+                    <p>{{ task.description }}</p>
+                    <p>{{ task.date_of_creation }}</p>
+                    <p>{{ task.deadline_date }}</p>
+                    <p>{{ task.priority_level }}</p>
+                    <p>{{ task.status }}</p>
+                    <form method="get">
+                        {% csrf_token %}
+                        <a href="{{ task.get_absolute_url }}"><button type="button" style="padding: 5px;
+                        width: 120px;">Редактировать</button></a>
+                        <a href=""><button type="submit" style="padding: 5px;
+                        width: 120px;">Удалить</button></a>
+                    </form>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</body>
+
+</html>
